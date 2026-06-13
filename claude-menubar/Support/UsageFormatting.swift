@@ -19,7 +19,7 @@ enum UsageFormatting {
         guard let date else { return "재설정 시간 확인 중" }
 
         let remaining = Int(date.timeIntervalSince(now).rounded())
-        if remaining <= 0 { return "곧 재설정" }
+        if remaining <= 0 { return "재설정됨" }
 
         let days = remaining / 86400
         let hours = (remaining % 86400) / 3600
@@ -37,8 +37,9 @@ enum UsageFormatting {
         countdownText(for: date, now: now)
     }
 
-    static func weeklyResetText(for date: Date?) -> String {
+    static func weeklyResetText(for date: Date?, now: Date) -> String {
         guard let date else { return "재설정 확인 중" }
+        if date <= now { return "재설정됨" }
         return weeklyResetFormatter.string(from: date)
     }
 

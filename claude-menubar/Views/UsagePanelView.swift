@@ -20,6 +20,7 @@ struct UsagePanelView: View {
                     UsageCard(
                         title: "현재 세션",
                         window: snap.currentSession,
+                        now: store.now,
                         resetText: UsageFormatting.sessionResetText(
                             for: snap.currentSession.resetDate,
                             now: store.now
@@ -30,7 +31,11 @@ struct UsagePanelView: View {
                         UsageCard(
                             title: "모든 모델",
                             window: weekly,
-                            resetText: UsageFormatting.weeklyResetText(for: weekly.resetDate),
+                            now: store.now,
+                            resetText: UsageFormatting.weeklyResetText(
+                                for: weekly.resetDate,
+                                now: store.now
+                            ),
                             accent: .modelCyan,
                             onRefresh: store.refreshWeeklyDisplay
                         )
@@ -114,13 +119,14 @@ struct UsagePanelView: View {
 private struct UsageCard: View {
     let title: String
     let window: UsageLimitSnapshot.UsageWindow
+    let now: Date
     let resetText: String
     let accent: Color
     var onRefresh: (() -> Void)?
 
-    private var pct: Double { window.clampedPercentage ?? 0 }
+    private var pct: Double { window.effectivePercentage(now: now) ?? 0 }
     private var pctText: String {
-        window.roundedPercentage.map { "\($0)%" } ?? "--%"
+        window.roundedPercentage(now: now).map { "\($0)%" } ?? "--%"
     }
 
     var body: some View {

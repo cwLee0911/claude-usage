@@ -11,11 +11,12 @@ final class UsageStore: ObservableObject {
     private let decoder = JSONDecoder()
     private var source: DispatchSourceFileSystemObject?
     private var directoryFileDescriptor: CInt = -1
+    private var clockTimer: Timer?
 
     var hasUsage: Bool {
-        snapshot?.currentSession.usedPercentage != nil
-            || displayedWeekly?.usedPercentage != nil
-            || snapshot?.weekly.usedPercentage != nil
+        snapshot?.currentSession.effectivePercentage(now: now) != nil
+            || displayedWeekly?.effectivePercentage(now: now) != nil
+            || snapshot?.weekly.effectivePercentage(now: now) != nil
     }
 
     var weeklyForDisplay: UsageLimitSnapshot.UsageWindow? {
@@ -34,11 +35,14 @@ final class UsageStore: ObservableObject {
 
         load()
         startMonitoringDirectory()
+        startClock()
     }
 
     func stop() {
         source?.cancel()
         source = nil
+        clockTimer?.invalidate()
+        clockTimer = nil
     }
 
     func refreshClock() {
@@ -54,7 +58,7 @@ final class UsageStore: ObservableObject {
     func load() {
         now = Date()
         do {
-            let data = try Data(contentsOf: UsagePaths.usageFileURL)
+            let data = try Data(contentsOf: readableUsageFileURL())
             let nextSnapshot = try decoder.decode(UsageLimitSnapshot.self, from: data)
             snapshot = nextSnapshot
 
@@ -66,6 +70,13 @@ final class UsageStore: ObservableObject {
             NSLog("claude-menubar failed to load usage data: \(error.localizedDescription)")
             snapshot = nil
         }
+    }
+
+    private func readableUsageFileURL() -> URL {
+        if FileManager.default.fileExists(atPath: UsagePaths.usageFileURL.path) {
+            return UsagePaths.usageFileURL
+        }
+        return UsagePaths.legacyUsageFileURL
     }
 
     private func startMonitoringDirectory() {
@@ -97,6 +108,13 @@ final class UsageStore: ObservableObject {
 
         source.resume()
         self.source = source
+    }
+
+    private func startClock() {
+        clockTimer?.invalidate()
+        clockTimer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
+            self?.refreshClock()
+        }
     }
 
 }

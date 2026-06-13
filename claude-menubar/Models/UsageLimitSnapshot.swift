@@ -10,8 +10,15 @@ struct UsageLimitSnapshot: Codable, Equatable {
             return min(100, max(0, usedPercentage))
         }
 
-        var roundedPercentage: Int? {
-            clampedPercentage.map { Int($0.rounded()) }
+        func effectivePercentage(now: Date) -> Double? {
+            if let resetDate, resetDate <= now {
+                return 0
+            }
+            return clampedPercentage
+        }
+
+        func roundedPercentage(now: Date) -> Int? {
+            effectivePercentage(now: now).map { Int($0.rounded()) }
         }
 
         var resetDate: Date? {
@@ -26,17 +33,27 @@ struct UsageLimitSnapshot: Codable, Equatable {
     let displayPercentage: Double?
     let updatedAt: TimeInterval
 
-    var menuBarTitle: String {
-        guard let pct = roundedDisplayPercentage else { return "--%" }
+    func menuBarTitle(now: Date) -> String {
+        guard let pct = roundedDisplayPercentage(now: now) else { return "--%" }
         return "\(pct)%"
     }
 
-    private var roundedDisplayPercentage: Int? {
-        let value = displayPercentage
-            ?? currentSession.usedPercentage
-            ?? weekly.usedPercentage
+    private func roundedDisplayPercentage(now: Date) -> Int? {
+        let value = currentSession.effectivePercentage(now: now)
+            ?? effectiveDisplayPercentage(now: now)
+            ?? weekly.effectivePercentage(now: now)
         guard let value else { return nil }
         return Int(min(100, max(0, value)).rounded())
+    }
+
+    private func effectiveDisplayPercentage(now: Date) -> Double? {
+        if currentSession.usedPercentage != nil,
+           let resetDate = currentSession.resetDate,
+           resetDate <= now {
+            return 0
+        }
+        guard let displayPercentage else { return nil }
+        return min(100, max(0, displayPercentage))
     }
 
     var updatedDate: Date {

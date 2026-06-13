@@ -7,7 +7,6 @@ final class StatusItemController: NSObject, NSPopoverDelegate {
     private let statusItem: NSStatusItem
     private let popover = NSPopover()
     private var cancellables = Set<AnyCancellable>()
-    private var clockTimer: Timer?
 
     init(store: UsageStore) {
         self.store = store
@@ -43,10 +42,10 @@ final class StatusItemController: NSObject, NSPopoverDelegate {
     }
 
     private func bindStore() {
-        store.$snapshot
+        store.$snapshot.combineLatest(store.$now)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] snapshot in
-                self?.updateStatusTitle(snapshot?.menuBarTitle ?? "--%")
+            .sink { [weak self] snapshot, now in
+                self?.updateStatusTitle(snapshot?.menuBarTitle(now: now) ?? "--%")
             }
             .store(in: &cancellables)
     }
@@ -66,30 +65,12 @@ final class StatusItemController: NSObject, NSPopoverDelegate {
 
         if popover.isShown {
             popover.performClose(sender)
-            stopClock()
         } else {
             store.refreshClock()
             store.refreshWeeklyDisplay()
             popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
             popover.contentViewController?.view.window?.makeKey()
-            startClock()
         }
-    }
-
-    func popoverDidClose(_ notification: Notification) {
-        stopClock()
-    }
-
-    private func startClock() {
-        stopClock()
-        clockTimer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
-            self?.store.refreshClock()
-        }
-    }
-
-    private func stopClock() {
-        clockTimer?.invalidate()
-        clockTimer = nil
     }
 
     private static let menuBarTitleFont = NSFont.monospacedDigitSystemFont(
