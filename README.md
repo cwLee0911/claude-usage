@@ -1,4 +1,4 @@
-# claude-menubar
+# (macOS) claude-menubar
 
 An unofficial macOS menu bar utility for viewing Claude Code usage in real time.
 
