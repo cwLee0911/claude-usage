@@ -29,7 +29,7 @@
 		A20000000000000000000007 /* UsagePaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsagePaths.swift; sourceTree = "<group>"; };
 		A20000000000000000000008 /* UsageFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageFormatting.swift; sourceTree = "<group>"; };
 		A20000000000000000000009 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A20000000000000000000010 /* Claude-Usage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Claude-Usage.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A20000000000000000000010 /* claude-usage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "claude-usage.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A20000000000000000000011 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		A20000000000000000000012 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -48,12 +48,12 @@
 		A40000000000000000000001 = {
 			isa = PBXGroup;
 			children = (
-				A40000000000000000000002 /* ClaudeUsageBarMac */,
+				A40000000000000000000002 /* claude-usage */,
 				A40000000000000000000008 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		A40000000000000000000002 /* ClaudeUsageBarMac */ = {
+		A40000000000000000000002 /* claude-usage */ = {
 			isa = PBXGroup;
 			children = (
 				A40000000000000000000003 /* App */,
@@ -114,7 +114,7 @@
 		A40000000000000000000008 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A20000000000000000000010 /* Claude-Usage.app */,
+				A20000000000000000000010 /* claude-usage.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -122,9 +122,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A50000000000000000000001 /* ClaudeUsageBarMac */ = {
+		A50000000000000000000001 /* claude-usage */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A80000000000000000000002 /* Build configuration list for PBXNativeTarget "ClaudeUsageBarMac" */;
+			buildConfigurationList = A80000000000000000000002 /* Build configuration list for PBXNativeTarget "claude-usage" */;
 			buildPhases = (
 				A60000000000000000000001 /* Sources */,
 				A30000000000000000000001 /* Frameworks */,
@@ -134,9 +134,9 @@
 			);
 			dependencies = (
 			);
-			name = ClaudeUsageBarMac;
-			productName = "Claude-Usage";
-			productReference = A20000000000000000000010 /* Claude-Usage.app */;
+			name = "claude-usage";
+			productName = "claude-usage";
+			productReference = A20000000000000000000010 /* claude-usage.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -156,7 +156,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A80000000000000000000001 /* Build configuration list for PBXProject "ClaudeUsageBarMac" */;
+			buildConfigurationList = A80000000000000000000001 /* Build configuration list for PBXProject "claude-usage" */;
 			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -169,7 +169,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A50000000000000000000001 /* ClaudeUsageBarMac */,
+				A50000000000000000000001 /* claude-usage */,
 			);
 		};
 /* End PBXProject section */
@@ -338,8 +338,8 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.amber.ClaudeUsageBarMac;
-				PRODUCT_NAME = "Claude-Usage";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.amber.claude-usage";
+				PRODUCT_NAME = "claude-usage";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				SUPPORTS_MACCATALYST = NO;
@@ -367,8 +367,8 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.amber.ClaudeUsageBarMac;
-				PRODUCT_NAME = "Claude-Usage";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.amber.claude-usage";
+				PRODUCT_NAME = "claude-usage";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				SUPPORTS_MACCATALYST = NO;
@@ -379,7 +379,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A80000000000000000000001 /* Build configuration list for PBXProject "ClaudeUsageBarMac" */ = {
+		A80000000000000000000001 /* Build configuration list for PBXProject "claude-usage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A90000000000000000000001 /* Debug */,
@@ -388,7 +388,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A80000000000000000000002 /* Build configuration list for PBXNativeTarget "ClaudeUsageBarMac" */ = {
+		A80000000000000000000002 /* Build configuration list for PBXNativeTarget "claude-usage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A90000000000000000000003 /* Debug */,

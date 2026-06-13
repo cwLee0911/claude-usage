@@ -16,9 +16,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A50000000000000000000001"
-               BuildableName = "ClaudeUsageBarMac.app"
-               BlueprintName = "ClaudeUsageBarMac"
-               ReferencedContainer = "container:ClaudeUsageBarMac.xcodeproj">
+               BuildableName = "claude-usage.app"
+               BlueprintName = "claude-usage"
+               ReferencedContainer = "container:claude-usage.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -44,9 +44,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A50000000000000000000001"
-            BuildableName = "ClaudeUsageBarMac.app"
-            BlueprintName = "ClaudeUsageBarMac"
-            ReferencedContainer = "container:ClaudeUsageBarMac.xcodeproj">
+            BuildableName = "claude-usage.app"
+            BlueprintName = "claude-usage"
+            ReferencedContainer = "container:claude-usage.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -61,9 +61,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A50000000000000000000001"
-            BuildableName = "ClaudeUsageBarMac.app"
-            BlueprintName = "ClaudeUsageBarMac"
-            ReferencedContainer = "container:ClaudeUsageBarMac.xcodeproj">
+            BuildableName = "claude-usage.app"
+            BlueprintName = "claude-usage"
+            ReferencedContainer = "container:claude-usage.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

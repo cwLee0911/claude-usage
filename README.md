@@ -1,8 +1,8 @@
-# Claude Usage Bar Mac
+# claude-usage
 
 A small macOS menu bar app for viewing Claude Code usage in real time.
 
-![Claude Usage Bar Mac screenshot](docs/screenshot.png)
+![claude-usage screenshot](docs/screenshot.png)
 
 ## Features
 
@@ -27,8 +27,8 @@ To build manually:
 
 ```bash
 xcodebuild \
-  -project ClaudeUsageBarMac.xcodeproj \
-  -scheme ClaudeUsageBarMac \
+  -project claude-usage.xcodeproj \
+  -scheme claude-usage \
   -configuration Debug \
   CODE_SIGNING_ALLOWED=NO \
   build

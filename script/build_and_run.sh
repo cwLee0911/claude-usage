@@ -2,11 +2,10 @@
 set -euo pipefail
 
 MODE="${1:-run}"
-APP_NAME="Claude-Usage"
-LEGACY_APP_NAME="ClaudeUsageBarMac"
-BUNDLE_ID="com.amber.ClaudeUsageBarMac"
-PROJECT="ClaudeUsageBarMac.xcodeproj"
-SCHEME="ClaudeUsageBarMac"
+APP_NAME="claude-usage"
+BUNDLE_ID="com.amber.claude-usage"
+PROJECT="claude-usage.xcodeproj"
+SCHEME="claude-usage"
 CONFIGURATION="Debug"
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DERIVED_DATA="$ROOT_DIR/build/DerivedData"
@@ -15,7 +14,6 @@ APP_BUNDLE="$DERIVED_DATA/Build/Products/$CONFIGURATION/$APP_NAME.app"
 cd "$ROOT_DIR"
 
 pkill -x "$APP_NAME" >/dev/null 2>&1 || true
-pkill -x "$LEGACY_APP_NAME" >/dev/null 2>&1 || true
 
 xcodebuild \
   -project "$PROJECT" \
