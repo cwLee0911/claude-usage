@@ -321,33 +321,36 @@
   }
 
   @media (max-width: 720px) {
-    /* Mini MacBook (84vw wide, strict 16:10 ratio) then zooms to fill screen.
-       height = 84vw × 0.625 = 52.5vw
-       bottom = 100vh − 13vh − 52.5vw = 87vh − 52.5vw                     */
+    /* Mini MacBook centered on screen — 65vw wide, strict 16:10 ratio.
+       height = 65vw × 0.625 = 40.625vw ≈ 40.5vw
+       bottom = 100vh − 22vh − 40.5vw = 78vh − 40.5vw                     */
     .lid {
-      top: 13vh; left: 8vw; right: 8vw;
-      bottom: calc(87vh - 52.5vw);
-      border-width: 1.2vw; border-radius: 2.5vw;
+      top: 22vh; left: 17.5vw; right: 17.5vw;
+      bottom: calc(78vh - 40.5vw);
+      border-width: 1.5vw; border-radius: 3vw;
     }
 
-    /* Hinge sits right below the lid */
+    /* Hinge right below the screen */
     .base {
-      left: 6vw; right: 6vw;
-      top: calc(13vh + 52.5vw);
-      height: 1.8vh;
+      left: 15vw; right: 15vw;
+      top: calc(22vh + 40.5vw);
+      height: 1.6vh;
+      border-radius: 0 0 1.5vw 1.5vw;
     }
 
-    /* Ambient glow under the hinge */
+    /* Ambient glow */
     .floor {
-      top: calc(15.5vh + 52.5vw);
-      width: 84vw; height: 14vh;
+      top: calc(24.5vh + 40.5vw);
+      width: 65vw; height: 12vh;
     }
 
-    /* Cursor → Claude pill in the mini menu bar */
-    .s-cursor .cursor { top: 14.3vh; left: 81vw; }
+    /* Cursor → Claude pill in the mini menu bar
+       pill sits at ~88% of lid width from left:
+       17.5vw + 0.88 × 65vw ≈ 74.7vw                                      */
+    .s-cursor .cursor { top: 23.4vh; left: 75vw; }
 
-    /* Panel a bit narrower to fit the smaller container */
-    .panel { width: 68cqw; min-width: 0; }
+    /* Panel narrower to fit inside the smaller container */
+    .panel { width: 70cqw; min-width: 0; }
   }
 </style>
 </head>
