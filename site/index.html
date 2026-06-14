@@ -321,7 +321,7 @@
   }
 
   @media (max-width: 720px) {
-    /* Mini MacBook centered on screen — 65vw wide, strict 16:10 ratio.
+    /* ── Step 1: Mini MacBook, 65vw wide, strict 16:10 ratio ──────────────
        height = 65vw × 0.625 = 40.625vw ≈ 40.5vw
        bottom = 100vh − 22vh − 40.5vw = 78vh − 40.5vw                     */
     .lid {
@@ -329,27 +329,43 @@
       bottom: calc(78vh - 40.5vw);
       border-width: 1.5vw; border-radius: 3vw;
     }
-
-    /* Hinge right below the screen */
     .base {
       left: 15vw; right: 15vw;
-      top: calc(22vh + 40.5vw);
-      height: 1.6vh;
+      top: calc(22vh + 40.5vw); height: 1.6vh;
       border-radius: 0 0 1.5vw 1.5vw;
     }
+    .floor { top: calc(24.5vh + 40.5vw); width: 65vw; height: 12vh; }
 
-    /* Ambient glow */
-    .floor {
-      top: calc(24.5vh + 40.5vw);
-      width: 65vw; height: 12vh;
-    }
-
-    /* Cursor → Claude pill in the mini menu bar
-       pill sits at ~88% of lid width from left:
-       17.5vw + 0.88 × 65vw ≈ 74.7vw                                      */
+    /* Cursor → Claude pill (≈ 75vw from left in the mini menu bar) */
     .s-cursor .cursor { top: 23.4vh; left: 75vw; }
 
-    /* Panel narrower to fit inside the smaller container */
+    /* ── Step 2: Zoom target — full width but 16:10 (landscape), top-pinned
+       height = 100vw × 0.625 = 62.5vw
+       bottom = 100vh − 62.5vw keeps it landscape, NOT portrait-full-screen  */
+    .s-zoom .lid {
+      top: 0; left: 0; right: 0;
+      bottom: calc(100vh - 62.5vw);
+      border-width: 0; border-radius: 0; box-shadow: none;
+    }
+
+    /* ── Step 3: Hero in the space below the zoomed MacBook ─────────────── */
+    .hero {
+      top: 62.5vw; left: 0; right: 0; bottom: 0;
+      max-width: none;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 0 24px 5vh;
+    }
+    .hero .eyebrow { font-size: 10px; padding: 5px 10px; margin-bottom: 12px; gap: 5px; }
+    .hero .eyebrow .dot { width: 5px; height: 5px; }
+    .hero h1 { font-size: clamp(24px, 8vw, 40px); }
+    .hero p  { font-size: clamp(13px, 3.8vw, 17px); margin-top: 10px; }
+    .dl { font-size: 16px; padding: 14px 24px; margin-top: 20px; gap: 9px; }
+    .dl svg { width: 18px; height: 18px; }
+    .hero .meta { justify-content: center; gap: 8px; margin-top: 14px; }
+    .hero .badge { font-size: 11px; padding: 4px 10px; }
+
+    /* Panel fits the smaller container */
     .panel { width: 70cqw; min-width: 0; }
   }
 </style>
